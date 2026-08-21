@@ -1,0 +1,19 @@
+title: Chad Currie
+tagline: Staff Product Designer
+description: Portfolio of Chad Currie, Staff Product Designer.
+url: "https://chadcurrie.com"
+baseurl: ""
+
+markdown: kramdown
+permalink: pretty
+
+nav:
+  - title: About
+    url: /
+  - title: Case Study One
+    url: /case-study-one/
+  - title: Case Study Two
+    url: /case-study-two/
+
+exclude:
+  - README.md

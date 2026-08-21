@@ -1,0 +1,25 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% capture page_title %}{% if page.title and page.url != "/" %}{{ page.title }} — {% endif %}{{ site.title }} — {{ site.tagline }}{% endcapture %}
+{% capture page_description %}{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}{% endcapture %}
+
+<title>{{ page_title }}</title>
+<meta name="description" content="{{ page_description }}">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ page_title }}">
+<meta property="og:description" content="{{ page_description }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+{% if page.image %}<meta property="og:image" content="{{ page.image | absolute_url }}">{% endif %}
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page_title }}">
+<meta name="twitter:description" content="{{ page_description }}">
+{% if page.image %}<meta name="twitter:image" content="{{ page.image | absolute_url }}">{% endif %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Piazzolla:ital,opsz,wght@0,8..30,100..900;1,8..30,100..900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">

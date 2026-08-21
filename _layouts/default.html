@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+  {% include head.html %}
+</head>
+<body>
+  <div class="page">
+    {% include masthead.html %}
+    <main>
+      {{ content }}
+    </main>
+    {% include footer.html %}
+  </div>
+  <script src="{{ '/assets/js/parallax.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/email-link.js' | relative_url }}"></script>
+</body>
+</html>

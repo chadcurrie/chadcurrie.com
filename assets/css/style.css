@@ -1,0 +1,442 @@
+/* =========================================================================
+   DESIGN TOKENS
+   Change values here to restyle the whole site. Nothing below this
+   block should ever hard-code a color, font, or size.
+   ========================================================================= */
+
+:root {
+  /* ---- Color ----------------------------------------------------------
+     "Primary" = default use. "Strong" = higher-contrast variant of the
+     same role (deeper background, darker/blacker text). */
+  --color-bg: #f5f2f4;          /* page background */
+  --color-bg-strong: #ded9cd;   /* deeper version of bg, for contrast blocks/footer */
+  --color-fg: #60495c;          /* body text */
+  --color-fg-strong: #570047;   /* headline text */
+  --color-link: #0c6e94;        /* link color — same hue as before, darker + more saturated for contrast */
+  --color-link-hover: #09536f;  /* darker version of link, for hover */
+  --color-accent: #ca00a8;      /* accent — nav underline, quote text */
+
+  /* ---- Type -------------------------------------------------------------
+     One global family (Fraunces) for everything. It's a variable font,
+     so "body" vs "headline" is just a different weight/optical-size,
+     not a different typeface. The masthead name uses the same family
+     at a heavier weight + larger optical size as its "display" treatment. */
+  --font-body: "Piazzolla", Georgia, "Times New Roman", serif;
+  --font-display: "Piazzolla", Georgia, "Times New Roman", serif;
+
+  --weight-body: 420;
+  --weight-headline: 610;
+  --weight-display: 680;
+
+  /* 8-step type scale, smallest to largest. Fixed across devices by
+     design — add a viewport-specific modifier class later if a given
+     step needs to flex on big screens, rather than baking fluid sizing
+     into the base scale. Ratio between steps is a steady ~1.13-1.3
+     throughout, so no single jump reads as bigger than the others. */
+  --text-1: 0.8125rem; /* 13px — captions */
+  --text-2: 0.9375rem; /* 15px — nav, tagline, footer */
+  --text-3: 1.0625rem; /* 17px — base UI text */
+  --text-4: 1.3125rem; /* 21px — paragraphs */
+  --text-5: 1.625rem;  /* 26px — H3 */
+  --text-6: 2rem;      /* 32px — H2, pull quotes */
+  --text-7: 2.5rem;    /* 40px — H1 */
+  --text-8: 3.25rem;   /* 52px — masthead name */
+
+  /* ---- Layout ------------------------------------------------------- */
+  --measure: 65ch;          /* prose column width, ~50-75 characters/line */
+  --width-medium-image: 1000px;
+  --page-max: 1600px;       /* outer container ("large" images fill this) */
+  --gutter: 1.25rem;        /* page's default side margin */
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.75rem;
+  --space-4: 3rem;
+  --space-5: 5rem;
+
+  --radius: 20px;
+  --shadow-soft: 0 20px 50px -10px rgb(23 20 15 / 0.18);
+}
+
+/* =========================================================================
+   RESET
+   ========================================================================= */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-body);
+  font-weight: var(--weight-body);
+  font-size: var(--text-3);
+  line-height: 1.6;
+  font-optical-sizing: auto;
+}
+
+img, picture { max-width: 100%; display: block; }
+h1, h2, h3, h4, p, blockquote, figure { margin: 0; }
+a { color: var(--color-link); }
+a:hover { color: var(--color-link-hover); }
+
+hr {
+  max-width: var(--measure);
+  margin: var(--space-5) auto;
+  border: none;
+  border-top: 1px solid var(--color-bg-strong);
+}
+
+/* Any link that opens in a new tab gets a small "opens elsewhere" mark
+   automatically — just add target="_blank" and this shows up for free. */
+a[target="_blank"]::after {
+  content: "↗";
+  display: inline-block;
+  margin-left: 0.15em;
+  font-size: 0.75em;
+  text-decoration: none;
+  transform: translateY(-0.1em);
+}
+
+/* =========================================================================
+   PAGE CONTAINER
+   ========================================================================= */
+
+.page {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* =========================================================================
+   MASTHEAD
+   ========================================================================= */
+
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-4);
+  padding-block: var(--space-3) var(--space-2);
+}
+
+.masthead__identity { min-width: 0; }
+
+.masthead__name {
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  font-size: var(--text-5);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.masthead__name a {
+  color: var(--color-fg-strong);
+  text-decoration: none;
+}
+
+.masthead__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  font-size: var(--text-2);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.masthead__nav a {
+  color: var(--color-fg);
+  text-decoration: none;
+  padding-block: 0.15rem;
+  border-bottom: 2px solid transparent;
+}
+
+.masthead__nav a:hover {
+  color: var(--color-fg-strong);
+}
+
+.masthead__nav a[aria-current="page"] {
+  color: var(--color-fg-strong);
+  border-bottom-color: var(--color-accent);
+}
+
+/* Below this width, drop the nav beneath the identity block, left-aligned. */
+@media (max-width: 40rem) {
+  .masthead {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .masthead__nav {
+    justify-content: flex-start;
+  }
+}
+
+/* =========================================================================
+   PROSE (headlines + body copy column)
+   ========================================================================= */
+
+.prose {
+  max-width: var(--measure);
+  margin-inline: auto;
+}
+
+.prose + .prose,
+.prose + .media,
+.media + .prose {
+  margin-top: var(--space-4);
+}
+
+.prose > * + * { margin-top: var(--space-3); }
+.prose > p + p { margin-top: var(--space-2); }
+
+.prose h1 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  font-size: var(--text-8);
+  color: var(--color-fg-strong);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  overflow-wrap: break-word;
+}
+
+/* Below this width the hero H1 steps down a size — 52px is too wide
+   for a phone screen to carry comfortably. Same breakpoint as the nav. */
+@media (max-width: 40rem) {
+  .prose h1 { font-size: var(--text-7); }
+}
+
+.prose h2 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-headline);
+  font-size: var(--text-6);
+  color: var(--color-fg-strong);
+  line-height: 1.2;
+}
+
+/* Extra top space before an H2 — but not when it's the first thing in
+   its .prose block. Elsewhere this relied on margin-collapsing against
+   the parent to avoid double-spacing, which silently breaks the moment
+   that parent gets padding (e.g. inside .callout). */
+.prose h2:not(:first-child) {
+  margin-top: var(--space-4) !important;
+}
+
+.prose h3 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-headline);
+  font-size: var(--text-5);
+  color: var(--color-fg-strong);
+  line-height: 1.3;
+}
+
+.prose p, .prose li { font-size: var(--text-4); }
+
+/* .prose p above (class+element) outranks a bare utility class like
+   .eyebrow or .stat__value on specificity alone, no matter where either
+   rule sits in the file — these re-assert their own size when nested
+   inside .prose. */
+.prose p.eyebrow { font-size: var(--text-2); }
+.prose p.stat__value { font-size: var(--text-7); }
+.prose p.stat__label { font-size: var(--text-2); }
+
+.prose ul, .prose ol {
+  padding-left: 1.25em;
+}
+.prose li + li { margin-top: 0.4em; }
+
+/* =========================================================================
+   HEADSHOT
+   A small circular portrait that floats beside the paragraph right after
+   it, letting text wrap around it. Below the nav breakpoint it drops
+   the float and stacks as a plain block instead.
+   ========================================================================= */
+
+.headshot {
+  float: left;
+  width: 128px;
+  height: 128px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-left: -8px;
+  margin-right: var(--space-2);
+}
+
+.headshot ~ p + p {
+  clear: left;
+}
+
+@media (max-width: 40rem) {
+  .headshot {
+    float: none;
+    display: block;
+    margin-right: 0;
+    margin-bottom: var(--space-2);
+  }
+}
+
+/* =========================================================================
+   MEDIA (images)
+   ========================================================================= */
+
+.media {
+  margin-block: var(--space-4);
+  margin-inline: auto;
+}
+
+.media img { margin-inline: auto; border-radius: var(--radius); }
+
+/* Small: author sets max-width inline per-image, e.g. style="max-width: 420px".
+   Also capped on height so a tall, narrow screenshot doesn't tower over
+   the page — width scales down to match, keeping its aspect ratio. */
+.media--small {
+  max-width: var(--measure);
+}
+
+.media--small img {
+  max-height: 600px;
+  width: auto;
+}
+
+/* Medium: wider than the prose column, defaults to 1280px */
+.media--medium {
+  max-width: var(--width-medium-image);
+}
+
+/* Large: fills the page's outer width (minus the default page margin) */
+.media--large {
+  max-width: 100%;
+}
+
+.media--shadow img {
+  box-shadow: var(--shadow-soft);
+}
+
+/* Opt-in parallax drift, driven by assets/js/parallax.js. The script
+   no-ops under prefers-reduced-motion, so this is a progressive
+   enhancement — images still look correct with no JS at all. */
+.media--parallax img,
+:is(.pullquote, .callout).media--parallax {
+  will-change: transform;
+}
+
+.media figcaption {
+  max-width: var(--measure);
+  margin: var(--space-1) auto 0;
+  font-size: var(--text-2);
+  color: var(--color-fg);
+  opacity: 0.75;
+}
+
+/* =========================================================================
+   PULL QUOTES
+   ========================================================================= */
+
+.pullquote {
+  max-width: var(--width-medium-image);
+  margin: var(--space-5) auto;
+  font-family: var(--font-display);
+  font-weight: var(--weight-body);
+  font-style: italic;
+  font-size: var(--text-6);
+  line-height: 1.3;
+  color: var(--color-accent);
+  text-align: left;
+}
+
+.pullquote cite {
+  display: block;
+  margin-top: var(--space-2);
+  font-family: var(--font-body);
+  font-weight: var(--weight-body);
+  font-style: normal;
+  font-size: var(--text-2);
+  color: var(--color-fg);
+}
+
+/* =========================================================================
+   CALLOUT
+   A white card for a block of prose that wants to stand apart from the
+   page — sized, rounded, and shadowed the same way a medium image is,
+   so the two families read as related. Wrap the text in its own .prose
+   div inside so it gets normal heading/paragraph styling.
+   ========================================================================= */
+
+.callout {
+  max-width: var(--width-medium-image);
+  margin: var(--space-4) auto;
+  padding: var(--space-4);
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+/* =========================================================================
+   EYEBROW (small label line above a heading)
+   ========================================================================= */
+
+.eyebrow {
+  font-size: var(--text-2);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-fg);
+}
+
+/* =========================================================================
+   STAT ROW (impact numbers, side by side)
+   ========================================================================= */
+
+.stat-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-4);
+  max-width: var(--measure);
+  margin: var(--space-4) auto 0;
+}
+
+.stat { flex: 1 1 140px; }
+
+/* Force an even 2-up grid instead of letting items reflow naturally —
+   use this when an odd count (e.g. 4 items at 3-per-row) would leave a
+   lone orphan on its own line. */
+.stat-row--2col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.stat__value {
+  font-family: var(--font-display);
+  font-weight: var(--weight-headline);
+  font-size: var(--text-7);
+  color: var(--color-fg-strong);
+  line-height: 1.1;
+}
+
+.stat__label {
+  margin-top: 0.2rem;
+  font-size: var(--text-2);
+  color: var(--color-fg);
+}
+
+/* =========================================================================
+   FOOTER
+   ========================================================================= */
+
+.site-footer {
+  margin-top: var(--space-5);
+  padding-block: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--color-bg-strong);
+  font-size: var(--text-2);
+  color: var(--color-fg);
+}
+
+.site-footer a { color: var(--color-fg); }
+
+/* =========================================================================
+   MAIN SPACING
+   ========================================================================= */
+
+main {
+  padding-block: var(--space-3) var(--space-5);
+}
