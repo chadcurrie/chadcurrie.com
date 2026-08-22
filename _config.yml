@@ -10,10 +10,10 @@ permalink: pretty
 nav:
   - title: About
     url: /
-  - title: Case Study One
-    url: /case-study-one/
-  - title: Case Study Two
-    url: /case-study-two/
+  - title: Case Study 1
+    url: /case-study-1/
+  - title: Case Study 2
+    url: /case-study-2/
 
 exclude:
   - README.md

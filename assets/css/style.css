@@ -137,6 +137,16 @@ a[target="_blank"]::after {
   text-decoration: none;
 }
 
+/* Same typographic treatment as a figcaption — small, muted, quiet —
+   so it reads as a caption on the name rather than competing with it
+   or with the nav. */
+.masthead__caption {
+  margin-top: 0.2rem;
+  font-size: var(--text-2);
+  color: var(--color-fg);
+  opacity: 0.75;
+}
+
 .masthead__nav {
   display: flex;
   flex-wrap: wrap;
@@ -234,10 +244,9 @@ a[target="_blank"]::after {
 .prose p, .prose li { font-size: var(--text-4); }
 
 /* .prose p above (class+element) outranks a bare utility class like
-   .eyebrow or .stat__value on specificity alone, no matter where either
-   rule sits in the file — these re-assert their own size when nested
-   inside .prose. */
-.prose p.eyebrow { font-size: var(--text-2); }
+   .stat__value on specificity alone, no matter where either rule sits
+   in the file — these re-assert their own size when nested inside
+   .prose. */
 .prose p.stat__value { font-size: var(--text-7); }
 .prose p.stat__label { font-size: var(--text-2); }
 
@@ -372,16 +381,6 @@ a[target="_blank"]::after {
   box-shadow: var(--shadow-soft);
 }
 
-/* =========================================================================
-   EYEBROW (small label line above a heading)
-   ========================================================================= */
-
-.eyebrow {
-  font-size: var(--text-2);
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  color: var(--color-fg);
-}
 
 /* =========================================================================
    STAT ROW (impact numbers, side by side)
