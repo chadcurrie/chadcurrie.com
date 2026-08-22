@@ -1,5 +1,5 @@
 (function () {
-  var MAX_OFFSET = 40; // px of drift at most, in either direction
+  var MAX_OFFSET = 24; // px of drift at most, in either direction
 
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 

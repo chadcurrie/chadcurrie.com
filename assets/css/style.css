@@ -58,6 +58,16 @@
   --shadow-soft: 0 20px 50px -10px rgb(23 20 15 / 0.18);
 }
 
+/* Smaller radius on phones, applied globally — the full radius reads
+   as too heavy at narrower widths. Redefining the token here means
+   everything using it (images, .callout, anything added later) picks
+   up the smaller value automatically. */
+@media (max-width: 40rem) {
+  :root {
+    --radius: 12px;
+  }
+}
+
 /* =========================================================================
    RESET
    ========================================================================= */
