@@ -414,7 +414,6 @@ a[target="_blank"]::after {
 .case-promo img {
   width: 100%;
   border-radius: var(--radius);
-  box-shadow: var(--shadow-soft);
 }
 
 .case-promo__title {
