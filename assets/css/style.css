@@ -391,6 +391,51 @@ a[target="_blank"]::after {
   box-shadow: var(--shadow-soft);
 }
 
+/* =========================================================================
+   CASE STUDY PROMOS
+   Two-up grid of clickable cards linking into the case studies, sized
+   to match a medium image. Stacks to one column on phones.
+   ========================================================================= */
+
+.case-promo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3) var(--space-4);
+  max-width: var(--width-medium-image);
+  margin: var(--space-4) auto;
+}
+
+.case-promo {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.case-promo img {
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.case-promo__title {
+  display: block;
+  margin-top: var(--space-2);
+  font-family: var(--font-display);
+  font-weight: var(--weight-headline);
+  font-size: var(--text-4);
+  color: var(--color-fg-strong);
+}
+
+.case-promo:hover .case-promo__title {
+  color: var(--color-link-hover);
+  text-decoration: underline;
+}
+
+@media (max-width: 40rem) {
+  .case-promo-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 /* =========================================================================
    STAT ROW (impact numbers, side by side)
