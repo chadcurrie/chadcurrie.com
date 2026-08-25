@@ -9,6 +9,16 @@ description: "How I shipped Indeed's first autonomous AI sourcing agent from zer
 <div class="prose">
   <h1>Indeed AI Sourcing Assistant</h1>
   <p>I shipped Indeed's first autonomous AI sourcing agent from zero to GA in eight months.</p>
+
+  <nav class="jump-to" aria-label="Sections on this page">
+    <span class="jump-to__label">Jump to</span>
+    <a href="#background">Background</a>
+    <a href="#assignment">Assignment</a>
+    <a href="#challenge">Challenge</a>
+    <a href="#method">Method</a>
+    <a href="#epilogue">Epilogue and impact</a>
+    <a href="#unresolved">Unresolved</a>
+  </nav>
 </div>
 
 <figure class="media media--small">
@@ -16,11 +26,11 @@ description: "How I shipped Indeed's first autonomous AI sourcing agent from zer
 </figure>
 
 <div class="prose">
-  <h2>Background: Pivot to agents</h2>
+  <h2 id="background">Background: Pivot to agents</h2>
   <p>Indeed's new CEO arrived in June 2025 with a directive for R&amp;D to ship agentic products for sourcing and screening, the two most time intensive hiring tasks. Proactive sourcing improves hiring outcomes, but most employers don't have the time or the skills to source regularly. An agent that did that work for them could change lives.</p>
   <p>I joined the new AI Sourcing team in June 2025 as Indeed reorganized around the new mandate. We kicked off the Sourcing Assistant program in August 2025.</p>
 
-  <h2>Assignment: Autonomous or don't bother</h2>
+  <h2 id="assignment">Assignment: Autonomous or don't bother</h2>
   <p>Product leadership gave us the definition of success: a sourcing agent must invite candidates on its own. Anything else would be a faster horse. That kind of autonomy would require solving three problems:</p>
   <ol>
     <li><strong>Intent:</strong> Ensure the agent knows what the employer wants in a candidate.</li>
@@ -36,7 +46,7 @@ description: "How I shipped Indeed's first autonomous AI sourcing agent from zer
 </blockquote>
 
 <div class="prose">
-  <h2>Challenge: Activation versus match quality</h2>
+  <h2 id="challenge">Challenge: Activation versus match quality</h2>
   <p>We launched a white glove service (no interface) with 12 pilot customers, every function on the team working like a customer rep and recruiter. This phase let us stand up our core technology while learning the problem space:</p>
   <ol>
     <li><strong>Job descriptions don't convey the true hiring intent.</strong> They're advertisements, not recruiting briefs. We learned to throw out the compulsory noise (like nice-to-have skills) while asking about unwritten domain details. For example, how do commercial and residential property manager resumes differ?</li>
@@ -53,7 +63,7 @@ description: "How I shipped Indeed's first autonomous AI sourcing agent from zer
 <div class="prose">
   <p>There was the tension. Every question we asked made the matches better, and made people want to close the browser. Activation and match quality were at odds. With the agent off by default, we had to earn activation.</p>
 
-  <h2>Method: Finding good friction</h2>
+  <h2 id="method">Method: Finding good friction</h2>
   <p>Our pilot convinced me that our agent needed to be an opinionated tool, not a do-anything chatbot. I worked from these principles:</p>
   <ol>
     <li>Put users on a guided activation path.</li>
@@ -122,7 +132,7 @@ description: "How I shipped Indeed's first autonomous AI sourcing agent from zer
 </figure>
 
 <div class="prose">
-  <h2>Epilogue and impact</h2>
+  <h2 id="epilogue">Epilogue and impact</h2>
   <p>From beta to GA we reduced activation dropoff by 17 points without harming match quality or satisfaction scores.</p>
   <p>After testing the sourcing agent in three different packages, we shipped it for general availability as <a href="https://www.indeed.com/employers/solutions/smart-sourcing" target="_blank" rel="noopener noreferrer">Sourcing Assistant</a> in a new Pro tier of Smart Sourcing, Indeed's enterprise resume search product.</p>
 </div>
@@ -153,7 +163,7 @@ description: "How I shipped Indeed's first autonomous AI sourcing agent from zer
 
 <div class="callout media--parallax">
   <div class="prose">
-    <h2>Unresolved: What's the role of autonomy in matching?</h2>
+    <h2 id="unresolved">Unresolved: What's the role of autonomy in matching?</h2>
 
     <p>Matching humans to other humans remains unsolved. Employers adjust their ideal as hiring proceeds. Their target moves, and much of it was never written down.</p>
 

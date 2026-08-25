@@ -8,7 +8,7 @@
   /* ---- Color ----------------------------------------------------------
      "Primary" = default use. "Strong" = higher-contrast variant of the
      same role (deeper background, darker/blacker text). */
-  --color-bg: #f5f2f4;          /* page background */
+  --color-bg: #f5f4f2;          /* page background */
   --color-bg-strong: #ded9cd;   /* deeper version of bg, for contrast blocks/footer */
   --color-fg: #60495c;          /* body text */
   --color-fg-strong: #570047;   /* headline text */
@@ -389,6 +389,57 @@ a[target="_blank"]::after {
   background: #fff;
   border-radius: var(--radius);
   box-shadow: var(--shadow-soft);
+}
+
+/* =========================================================================
+   JUMP TO (in-page section links)
+   Same visual language as the masthead nav — small, uppercase, quiet —
+   so it reads as wayfinding, not body content. No scroll-spy/"current
+   section" state on purpose: that needs JS to track scroll position,
+   which is more moving parts than this earns.
+   ========================================================================= */
+
+.jump-to {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  font-size: var(--text-2);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* A mini eyebrow above the links — italic, sentence case, no
+   letter-spacing — so it reads as a quiet label introducing the row
+   rather than another nav item, even though it lives in the same
+   uppercase/letter-spaced flex row. */
+.jump-to__label {
+  flex-basis: 100%;
+  font-style: italic;
+  font-weight: var(--weight-body);
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--color-fg);
+  opacity: 0.75;
+}
+
+.jump-to a {
+  color: var(--color-fg);
+  text-decoration: none;
+  padding-block: 0.15rem;
+  border-bottom: 2px solid transparent;
+}
+
+.jump-to a:hover {
+  color: var(--color-fg-strong);
+  border-bottom-color: var(--color-accent);
+}
+
+/* Hide on phones — six wrapped label rows above the fold isn't worth
+   it when the whole point is a short page-length scroll anyway. */
+@media (max-width: 40rem) {
+  .jump-to {
+    display: none;
+  }
 }
 
 /* =========================================================================
