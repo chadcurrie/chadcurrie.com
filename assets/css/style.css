@@ -209,7 +209,7 @@ a[target="_blank"]::after {
 }
 
 .prose > * + * { margin-top: var(--space-3); }
-.prose > p + p { margin-top: var(--space-2); }
+.prose > p + p, .expandable > p + p { margin-top: var(--space-2); }
 
 .prose h1 {
   font-family: var(--font-display);
@@ -389,6 +389,56 @@ a[target="_blank"]::after {
   background: #fff;
   border-radius: var(--radius);
   box-shadow: var(--shadow-soft);
+}
+
+
+/* =========================================================================
+   EXPANDABLE (collapsed teaser with a fade-out, expands on click)
+   Driven by assets/js/expandable.js. Degrades gracefully with no JS:
+   content just stays fully visible, nothing breaks.
+   ========================================================================= */
+
+.expandable {
+  position: relative;
+  max-height: 4.8em;
+  overflow: hidden;
+}
+
+.expandable::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3.5em;
+  background: linear-gradient(to bottom, rgb(255 255 255 / 0), #fff);
+  pointer-events: none;
+}
+
+.expandable.is-expanded {
+  max-height: none;
+}
+
+.expandable.is-expanded::after {
+  display: none;
+}
+
+.expandable__toggle {
+  display: inline-block;
+  margin-top: var(--space-2);
+  font-family: var(--font-body);
+  font-size: var(--text-2);
+  font-weight: var(--weight-headline);
+  color: var(--color-link);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.expandable__toggle:hover {
+  color: var(--color-link-hover);
 }
 
 /* =========================================================================
