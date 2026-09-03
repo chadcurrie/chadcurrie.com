@@ -8,7 +8,7 @@
   /* ---- Color ----------------------------------------------------------
      "Primary" = default use. "Strong" = higher-contrast variant of the
      same role (deeper background, darker/blacker text). */
-  --color-bg: #f5f4f2;          /* page background */
+  --color-bg: #fcfbfa;          /* page background */
   --color-bg-strong: #ded9cd;   /* deeper version of bg, for contrast blocks/footer */
   --color-fg: #60495c;          /* body text */
   --color-fg-strong: #570047;   /* headline text */
@@ -24,9 +24,9 @@
   --font-body: "Piazzolla", Georgia, "Times New Roman", serif;
   --font-display: "Piazzolla", Georgia, "Times New Roman", serif;
 
-  --weight-body: 420;
-  --weight-headline: 610;
-  --weight-display: 680;
+  --weight-body: 380;
+  --weight-headline: 560;
+  --weight-display: 620;
 
   /* 8-step type scale, smallest to largest. Fixed across devices by
      design — add a viewport-specific modifier class later if a given
